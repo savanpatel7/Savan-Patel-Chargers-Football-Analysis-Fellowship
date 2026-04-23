@@ -1,7 +1,7 @@
 # 2nd & Short analysis - EPA by situation, field zone, distance, game phase
 # Filters to 2nd down plays with 3 or fewer yards to go
 
-source("05_epa_computation.R")
+
 
 second_short <- pbp_final %>%
   filter(
