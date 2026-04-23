@@ -2,7 +2,7 @@
 # Punt and turnover terminal values set to 0 here —
 # adjusted values computed in 03_terminal_adjustments.R
 
-source("01_helpers.R")
+
 
 terminal_ep <- c(TD = 7, FG = 3, SAFETY = -2,
                  TURNOVER = 0, PUNT = 0)
