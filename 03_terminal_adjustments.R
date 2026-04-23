@@ -3,7 +3,6 @@
 # Both adjustments follow the same pattern — find the opponent's first play
 # after the event and look up its EP from the first-pass solve
 
-source("02_markov_first_pass.R")
 
 # Punt adjustment
 punt_tv <- pbp_drive %>%
