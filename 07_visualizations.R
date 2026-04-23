@@ -3,7 +3,6 @@ dir.create("plots", showWarnings = FALSE)
 # All visualizations — Director and Coach decks
 # Requires pbp_final, second_short, EP_markov_df from upstream scripts
 
-source("06_second_short_analysis.R")
 
 library(ggplot2)
 library(ggtext)
