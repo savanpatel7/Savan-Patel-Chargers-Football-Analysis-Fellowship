@@ -111,16 +111,35 @@ install.packages(c(
 
 | File | Description |
 |------|-------------|
-| `01_workflow.R` | Full model workflow: data load through 2nd & Short analysis |
-| `02_visualizations.R` | All plots and tables for Director and Coach decks |
+| `00_data.R` | Load nflfastR play-by-play data and compute drive scores |
+| `01_helpers.R` | State space bucketing functions and sparse Markov solver |
+| `02_markov_first_pass.R` | Build transition matrix and solve first-pass EP (punt/turnover = 0) |
+| `03_terminal_adjustments.R` | Compute field-position adjusted terminal values for punts and turnovers |
+| `04_markov_second_pass.R` | Second-pass Markov solve with adjusted terminal values |
+| `05_epa_computation.R` | Join EP to play-by-play data and compute EPA |
+| `06_second_short_analysis.R` | 2nd & Short EPA analysis by situation, field zone, distance, and game phase |
+| `07_visualizations.R` | All plots and tables for Director and Coach decks |
+| `run_all.R` | Runs the full pipeline in order |
 
 ## Usage
 
-```r
-# Run in order
-source("01_workflow.R")
-source("02_visualizations.R")
-```
+Clone the repository and run the full pipeline from a fresh R session:
+
+    source("run_all.R")
+
+Or run individual scripts in order:
+
+    source("00_data.R")
+    source("01_helpers.R")
+    source("02_markov_first_pass.R")
+    source("03_terminal_adjustments.R")
+    source("04_markov_second_pass.R")
+    source("05_epa_computation.R")
+    source("06_second_short_analysis.R")
+    source("07_visualizations.R")
+
+Note: Set `R_MAX_VSIZE = "32Gb"` before running on machines with limited memory.
+Output plots are saved to the `plots/` directory.
 
 ## Key Findings — 2nd & Short Play Selection
 
