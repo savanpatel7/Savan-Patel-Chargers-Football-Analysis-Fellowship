@@ -1,7 +1,7 @@
 # Second-pass Markov solve with field-position adjusted terminal values
 # Produces the final EP lookup table used for all downstream analysis
 
-source("03_terminal_adjustments.R")
+
 
 EP_v2 <- build_ep_sparse(
   transition_counts, all_states, terminal_ep,
