@@ -1,7 +1,7 @@
 # Join EP to play-by-play data and compute EPA
 # EPA handles all scoring event types explicitly
 
-source("04_markov_second_pass.R")
+
 
 pbp_final <- pbp_drive %>%
   filter(
