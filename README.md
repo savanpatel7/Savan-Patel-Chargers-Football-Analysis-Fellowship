@@ -157,14 +157,24 @@ Based on analysis of 12,075 2nd & Short plays (2018–2024):
 
 ## Limitations
 
-- Binary score state (leading vs not leading) loses nuance between small and 
-  large leads
-- Drive EP measures offensive possession value: not net next-score by either 
-  team. This is the right framework for play-calling but produces different 
-  EP values at deep field positions than net-EP models
-- Scoring play kickoff value not yet adjusted: TD and FG terminal values do 
-  not subtract the opponent's expected kickoff EP
-- Memoryless Markov assumption: no sequential play-calling tendencies or 
-  momentum captured
-- No opponent quality, personnel groupings, or weather in the state space
+- **Data constraints limit state space expansion** — the model currently has 
+  3,260 states with a median of 19 plays per state across 7 seasons of data. 
+  Every additional state dimension multiplies the state count and reduces 
+  observations per state. Adding finer score buckets, opponent quality, 
+  personnel groupings, or weather would push many states below the threshold 
+  for reliable transition probability estimation. Expanding the state space 
+  meaningfully would require 10+ seasons of data.
+- **Binary score state** — leading vs not leading loses nuance between small 
+  and large leads. Three score buckets were tested but dropped median plays 
+  per state to ~11, producing unreliable estimates in sparse states.
+- **Drive EP vs net EP** — this model measures offensive possession value, not 
+  net next-score by either team. This is the right framework for play-calling 
+  decisions but produces different EP values at deep field positions than 
+  net-EP models.
+- **Scoring play kickoff value not adjusted** — TD and FG terminal values do 
+  not subtract the opponent's expected kickoff EP. A fully consistent model 
+  would set TD ≈ 6.25 and FG ≈ 2.25 after accounting for a typical touchback.
+- **Memoryless Markov assumption** — the model treats each state as independent 
+  of prior plays. Sequential play-calling tendencies and in-drive momentum are 
+  not captured.
 
