@@ -1,8 +1,8 @@
 # Savan-Patel-Chargers-Football-Analysis-Fellowship
 # NFL Drive Expected Points Model
 
-A novel Expected Points (EP) model for NFL play-by-play data, built on an 
-analytically solved Markov chain. Developed as part of a Football Analytics 
+An Expected Points Added (EPA) model for NFL play-by-play data, built on an 
+analytically solved Markov chain. Developed as part of a Football Analysis
 Fellowship application.
 
 ## Overview
@@ -94,3 +94,58 @@ EPA is computed play-by-play as:
 ## Requirements
 
 ```r
+install.packages(c(
+  "tidyverse",
+  "nflreadr", 
+  "Matrix",
+  "ggplot2",
+  "ggtext",
+  "patchwork",
+  "gt",
+  "gtExtras",
+  "scales"
+))
+```
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `01_workflow.R` | Full model workflow: data load through 2nd & Short analysis |
+| `02_visualizations.R` | All plots and tables for Director and Coach decks |
+
+## Usage
+
+```r
+# Run in order
+source("01_workflow.R")
+source("02_visualizations.R")
+```
+
+## Key Findings — 2nd & Short Play Selection
+
+Based on analysis of 12,075 2nd & Short plays (2018–2024):
+
+- Passing outperforms running in most 2nd & Short situations when accounting 
+  for field position, game phase, and score state
+- **Run** in the red zone (inside the 20) and when the game is tied
+- **Pass** when trailing by one score, leading by any amount, or in normal 
+  1st half game flow
+- **Run** in both 2-minute drills: clock management value is real
+- Teams currently pass only 27–46% of the time on 2nd & Short across all 
+  situations, suggesting systematic under-utilization of the passing game in 
+  moderate score situations
+
+## Limitations
+
+- Binary score state (leading vs not leading) loses nuance between small and 
+  large leads
+- Drive EP measures offensive possession value: not net next-score by either 
+  team. This is the right framework for play-calling but produces different 
+  EP values at deep field positions than net-EP models
+- Scoring play kickoff value not yet adjusted: TD and FG terminal values do 
+  not subtract the opponent's expected kickoff EP
+- Memoryless Markov assumption: no sequential play-calling tendencies or 
+  momentum captured
+- No opponent quality, personnel groupings, or weather in the state space
+
